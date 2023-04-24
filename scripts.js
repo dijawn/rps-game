@@ -80,5 +80,5 @@ function whoWon() {
     } else {
         alert ("Computer: "+computerWins+"\nPlayer: "+playerWins+"\nTie Games: "+tieGames+"\nYou beat the computer! Congrats, I guess.")
     }
-}
+};
 
