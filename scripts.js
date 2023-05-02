@@ -1,3 +1,77 @@
+let computerWins = 0;
+let playerWins = 0;
+let tieGames = 0;
+
+//Generates random computer selection
+let computerSelection = () => {
+    let randomNum = Math.floor(Math.random()*3);
+    if (randomNum == 0) {
+        return 'Frog'
+    } else if (randomNum == 1) {
+        return 'Slug'
+    } else if (randomNum == 2) {
+        return 'Snail'
+    } else {
+        return 'Something Broke'
+    }
+};
+
+//Collect player choice
+let playerSelection = () => {
+    return prompt('Choose Your Fighter!');
+};
+
+//Create function to compare the two values and return the outcome
+function playRound (playerSelection, computerSelection) {
+    let playerInput = playerSelection.toLowerCase();
+    let compInput = computerSelection.toLowerCase();
+    if (playerInput === compInput) {
+        tieGames++;
+        alert(`Both of your ${playerSelection}s wrestled valiantly, it is a draw!\nComputer: ${computerWins}\nPlayer: ${playerWins}\nDraws: ${tieGames}`);
+        return console.log("Tie");
+    } else if (playerInput === 'frog'&& compInput === 'slug' ||
+               playerInput === 'slug'&& compInput === 'snake' ||
+               playerInput === 'snake'&& compInput === 'frog') 
+            {
+                computerWins++;
+                alert(`The computer wisely chose the ${computerSelection} and defeated your ${playerSelection}\nThe stronger fighter has prevailed.\nComputer: ${computerWins}\nPlayer: ${playerWins}\nDraws: ${tieGames}`);
+                return console.log("Computer Won");
+    }else { playerWins++;
+            alert(`Your ${playerSelection} arm wrestler is strong. Your opponent's ${computerSelection} stood no chance.\nComputer: ${computerWins}\nPlayer: ${playerWins}\nDraws: ${tieGames}`)
+    };
+};
+console.log(playRound(playerSelection(), computerSelection()));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 //Create variables to store player and computer wins
 let computerWins = 0;
 let playerWins = 0;
@@ -81,4 +155,4 @@ function whoWon() {
         alert ("Computer: "+computerWins+"\nPlayer: "+playerWins+"\nTie Games: "+tieGames+"\nYou beat the computer! Congrats, I guess.")
     }
 };
-
+*/
