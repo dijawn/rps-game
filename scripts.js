@@ -2,6 +2,7 @@ let computerWins = 0;
 let playerWins = 0;
 let tieGames = 0;
 let games = 0;
+let maxGames = 5;
 
 
 
@@ -23,41 +24,52 @@ const frog = document.querySelector("#frog");
 const slug = document.querySelector("#slug");
 const snake = document.querySelector("#snake");
 const button = document.querySelector(".button")
+const results = document.querySelector("#results");
+const scoreboard = document.querySelector("#scoreboard");
+const playerScore = document.querySelector("#player");
+const compScore = document.querySelector("#comp");
+const draws = document.querySelector("#draws")
+const body = document.querySelector("body")
 
 window.addEventListener('click', e => {
-    if (games < 5){
-        return
-    }else if (games = 5){
+    console.log(games)
+    if ((computerWins+playerWins+tieGames) === maxGames) {
         whoWon();
+    } else {
+        return;
     }
 });
 
+window.addEventListener('click', e => {
+    playerScore.textContent = `${playerWins}`;
+    compScore.textContent = `${computerWins}`;
+    draws.textContent = `${tieGames}`;
+    scoreboard.appendChild("player", "comp", "draws");;
+});
+
 frog.addEventListener('click', e => {
-    if (games < 5){
-        playRound('Frog', computerSelection());
+    if (games < maxGames){
         games++;
-        console.log(`the number of rounds played is: ${games}`);
-    }else if (games = 5) {
+        playRound('Frog', computerSelection());
+    }else if (games = maxGames) {
         return;
     };
 });
 
 slug.addEventListener('click', e => {
-    if (games < 5){
-        playRound('Slug', computerSelection());
+    if (games < maxGames){
         games++;
-        console.log(`the number of rounds played is: ${games}`);
-    }else if (games = 5) {
+        playRound('Slug', computerSelection());
+    }else if (games = maxGames) {
         return;
     };
 });
 
 snake.addEventListener('click', e => {
-    if (games < 5){
-        playRound('Snake', computerSelection());
+    if (games < maxGames){
         games++;
-        console.log(`the number of rounds played is: ${games}`);
-    }else if (games = 5) {
+        playRound('Snake', computerSelection());
+    }else if (games = maxGames) {
         return;
     };
 });
@@ -68,25 +80,32 @@ function playRound (playerSelection, computerSelection) {
     let compInput = computerSelection.toLowerCase();
     if (playerInput === compInput) {
         tieGames++;
-        alert(`Both of your ${playerSelection}s wrestled valiantly, it is a draw!\nComputer: ${computerWins}\nPlayer: ${playerWins}\nDraws: ${tieGames}`);
-        return console.log("Tie");
+        results.textContent = `Both of your ${playerSelection}s wrestled valiantly, it is a draw!`;
+        scoreboard.appendChild("results");
     } else if (playerInput === 'frog'&& compInput === 'snake' ||
                playerInput === 'snake'&& compInput === 'slug' ||
                playerInput === 'slug'&& compInput === 'frog') 
-            {
-                computerWins++;
-                alert(`The computer wisely chose the ${computerSelection} and defeated your ${playerSelection}. The stronger fighter has prevailed.\nComputer: ${computerWins}\nPlayer: ${playerWins}\nDraws: ${tieGames}`);
-                return console.log("Computer Won");
+
+            {   computerWins++;
+                results.textContent = `The computer wisely chose the ${computerSelection} and defeated your ${playerSelection}. The stronger fighter has prevailed.`;
+                scoreboard.appendChild("results");
+                
     }else { playerWins++;
-            alert(`Your ${playerSelection} arm wrestler is strong. Your opponent's ${computerSelection} stood no chance.\nComputer: ${computerWins}\nPlayer: ${playerWins}\nDraws: ${tieGames}`)
+            results.textContent = `Your ${playerSelection} wrestler is strong. Your opponent's ${computerSelection} stood no chance.`;
+            scoreboard.appendChild("results");
     };
 };
 
 function whoWon() {
     if (computerWins > playerWins) {
-        alert(`The Computer wins! Computer: ${computerWins}\nPlayer: ${playerWins}\nDraws: ${tieGames}`)
+        results.textContent = `The match is over. After ${maxGames} games the computer has prevailed`;
+        scoreboard.appendChild("results");
     } else if (playerWins > computerWins) {
-        alert(`The Player wins! Computer: ${computerWins}\nPlayer: ${playerWins}\nDraws: ${tieGames}`)
+        results.textContent = `The match is over. After ${maxGames} games the human has prevailed`;
+        scoreboard.appendChild("results");
+    } else {
+        results.textContent = `The match is over. After ${maxGames} games we declare a draw`;
+        scoreboard.appendChild("results");
     };
 };
         
