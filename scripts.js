@@ -1,7 +1,8 @@
 let computerWins = 0;
 let playerWins = 0;
 let tieGames = 0;
-let games = 1;
+let games = 0;
+
 
 
 //Generates random computer selection
@@ -18,32 +19,48 @@ let computerSelection = () => {
     }
 };
 
-const frog = document.querySelector(".frog");
-const slug = document.querySelector(".slug");
-const snake = document.querySelector(".snake");
-const btn = document.querySelector(".options")
+const frog = document.querySelector("#frog");
+const slug = document.querySelector("#slug");
+const snake = document.querySelector("#snake");
+const button = document.querySelector(".button")
+
+window.addEventListener('click', e => {
+    if (games < 5){
+        return
+    }else if (games = 5){
+        whoWon();
+    }
+});
 
 frog.addEventListener('click', e => {
     if (games < 5){
         playRound('Frog', computerSelection());
         games++;
-        console.log(games);
+        console.log(`the number of rounds played is: ${games}`);
     }else if (games = 5) {
-        playRound('Frog', computerSelection());
-    }else {
-        return whoWon();
-    }
+        return;
+    };
 });
 
 slug.addEventListener('click', e => {
-    playRound('Slug', computerSelection());
-    games++;
-})
+    if (games < 5){
+        playRound('Slug', computerSelection());
+        games++;
+        console.log(`the number of rounds played is: ${games}`);
+    }else if (games = 5) {
+        return;
+    };
+});
 
 snake.addEventListener('click', e => {
-    playRound('Snake', computerSelection());
-    games++;
-})
+    if (games < 5){
+        playRound('Snake', computerSelection());
+        games++;
+        console.log(`the number of rounds played is: ${games}`);
+    }else if (games = 5) {
+        return;
+    };
+});
 
 //Create function to compare the two values and return the outcome
 function playRound (playerSelection, computerSelection) {
@@ -66,9 +83,9 @@ function playRound (playerSelection, computerSelection) {
 };
 
 function whoWon() {
-    if (computerWins > (playerWins && tieGames)) {
+    if (computerWins > playerWins) {
         alert(`The Computer wins! Computer: ${computerWins}\nPlayer: ${playerWins}\nDraws: ${tieGames}`)
-    } else if (playerWins > (computerWins && tieGames)) {
+    } else if (playerWins > computerWins) {
         alert(`The Player wins! Computer: ${computerWins}\nPlayer: ${playerWins}\nDraws: ${tieGames}`)
     };
 };
@@ -80,32 +97,3 @@ function whoWon() {
 
 
 
-
-
-
-
-
-
-
-/*
-//Create another function that runs five consecutive rounds between the player and computer and then determines the winner
-function game() {
-    //Create a for loop that will call playRound 5 times. Start at 1 to make it more human readable
-    for (i = 1; i < 6; i++) {
-        console.log(playRound(playerSelection(), computerSelection()));
-    }
-    whoWon();
-};
-//Call the function to see if it works as intended
-game();
-
-//Create function to determine the winner after 5 rounds have been played
-function whoWon() {
-    //Write an if statement that returns a different message based on a comparison of the playerWins and computerWins variables
-    if (computerWins > playerWins) {
-        alert ("Computer: "+computerWins+"\nPlayer: "+playerWins+"\nTie Games: "+tieGames+"\nYou just got defeated by a random number generator")
-    } else {
-        alert ("Computer: "+computerWins+"\nPlayer: "+playerWins+"\nTie Games: "+tieGames+"\nYou beat the computer! Congrats, I guess.")
-    }
-};
-*/
