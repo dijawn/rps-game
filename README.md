@@ -35,3 +35,6 @@ Step 3: Write a function that will call the playRound function 5 times and deter
     Declare the function, game(), as a self executing function
     Initialize the variable playerSelection and assign it to a prompt requestin user choice
     
+
+Step 4: Create 3 buttons representing each of the three options. When the user clicks a button, their choice is run through the function from above and return the result when compared to a randomly generated computer selection. 
+    

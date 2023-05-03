@@ -1,6 +1,8 @@
 let computerWins = 0;
 let playerWins = 0;
 let tieGames = 0;
+let games = 1;
+
 
 //Generates random computer selection
 let computerSelection = () => {
@@ -19,17 +21,28 @@ let computerSelection = () => {
 const frog = document.querySelector(".frog");
 const slug = document.querySelector(".slug");
 const snake = document.querySelector(".snake");
+const btn = document.querySelector(".options")
 
 frog.addEventListener('click', e => {
-    playRound('Frog', computerSelection());
-})
+    if (games < 5){
+        playRound('Frog', computerSelection());
+        games++;
+        console.log(games);
+    }else if (games = 5) {
+        playRound('Frog', computerSelection());
+    }else {
+        return whoWon();
+    }
+});
 
 slug.addEventListener('click', e => {
     playRound('Slug', computerSelection());
+    games++;
 })
 
 snake.addEventListener('click', e => {
     playRound('Snake', computerSelection());
+    games++;
 })
 
 //Create function to compare the two values and return the outcome
@@ -51,6 +64,15 @@ function playRound (playerSelection, computerSelection) {
             alert(`Your ${playerSelection} arm wrestler is strong. Your opponent's ${computerSelection} stood no chance.\nComputer: ${computerWins}\nPlayer: ${playerWins}\nDraws: ${tieGames}`)
     };
 };
+
+function whoWon() {
+    if (computerWins > (playerWins && tieGames)) {
+        alert(`The Computer wins! Computer: ${computerWins}\nPlayer: ${playerWins}\nDraws: ${tieGames}`)
+    } else if (playerWins > (computerWins && tieGames)) {
+        alert(`The Player wins! Computer: ${computerWins}\nPlayer: ${playerWins}\nDraws: ${tieGames}`)
+    };
+};
+        
 
 
 
