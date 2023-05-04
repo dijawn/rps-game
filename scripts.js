@@ -10,19 +10,19 @@ let maxGames = 5;
 let computerSelection = () => {
     let randomNum = Math.floor(Math.random()*3);
     if (randomNum == 0) {
-        return 'Frog'
+        return 'Frankenstein'
     } else if (randomNum == 1) {
-        return 'Slug'
+        return 'Mummy'
     } else if (randomNum == 2) {
-        return 'Snake'
+        return 'Dracula'
     } else {
         return 'Something Broke'
     }
 };
 
-const frog = document.querySelector("#frog");
-const slug = document.querySelector("#slug");
-const snake = document.querySelector("#snake");
+const frankenstein = document.querySelector("#frankenstein");
+const slug = document.querySelector("#dracula");
+const snake = document.querySelector("#mummy");
 const button = document.querySelector(".button")
 const results = document.querySelector("#results");
 const scoreboard = document.querySelector("#scoreboard");
@@ -47,28 +47,28 @@ window.addEventListener('click', e => {
     scoreboard.appendChild("player", "comp", "draws");;
 });
 
-frog.addEventListener('click', e => {
+frankenstein.addEventListener('click', e => {
     if (games < maxGames){
         games++;
-        playRound('Frog', computerSelection());
+        playRound('Frankenstein', computerSelection());
     }else if (games = maxGames) {
         return;
     };
 });
 
-slug.addEventListener('click', e => {
+dracula.addEventListener('click', e => {
     if (games < maxGames){
         games++;
-        playRound('Slug', computerSelection());
+        playRound('Dracula', computerSelection());
     }else if (games = maxGames) {
         return;
     };
 });
 
-snake.addEventListener('click', e => {
+mummy.addEventListener('click', e => {
     if (games < maxGames){
         games++;
-        playRound('Snake', computerSelection());
+        playRound('Mummy', computerSelection());
     }else if (games = maxGames) {
         return;
     };
@@ -82,9 +82,9 @@ function playRound (playerSelection, computerSelection) {
         tieGames++;
         results.textContent = `Both of your ${playerSelection}s wrestled valiantly, it is a draw!`;
         scoreboard.appendChild("results");
-    } else if (playerInput === 'frog'&& compInput === 'snake' ||
-               playerInput === 'snake'&& compInput === 'slug' ||
-               playerInput === 'slug'&& compInput === 'frog') 
+    } else if (playerInput === 'frankenstein'&& compInput === 'dracula' ||
+               playerInput === 'dracula'&& compInput === 'mummy' ||
+               playerInput === 'mummy'&& compInput === 'frankenstein') 
 
             {   computerWins++;
                 results.textContent = `The computer wisely chose the ${computerSelection} and defeated your ${playerSelection}. The stronger fighter has prevailed.`;
